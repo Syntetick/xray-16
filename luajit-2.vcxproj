@@ -45,6 +45,7 @@
     <IntDir>$(xrIntDir)</IntDir>
     <TargetName>lua51</TargetName>
     <TargetExt>.dll</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -58,21 +59,23 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>
+      </GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <OutputFile>$(xrLibDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories />
+      <AdditionalDependencies />
     </Link>
     <PreBuildEvent>
       <Command>cd src
-echo "------ starting luajit cleanup ------"
+echo "------ luajit cleanup ------"
 del /Q *.dll *.exe *.lib *.exp</Command>
     </PreBuildEvent>
     <PreBuildEvent>
@@ -88,9 +91,10 @@ call "msvcbuild.bat"</Command>
     <PostBuildEvent>
       <Command>echo "------ moving luajit binaries ------"
 cd src
-move /Y lua51.dll $(xrGameDir)bin_rel\
+move /Y lua51.dll $(xrBinDir)
 move /Y lua51.lib $(xrLibDir)
 move /Y lua51.exp $(xrLibDir)</Command>
+      <Message>Move bins</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
