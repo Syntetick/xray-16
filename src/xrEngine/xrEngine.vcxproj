@@ -135,8 +135,6 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(xrGameDir)bin_rel\</OutDir>
-    <IntDir>$(xrIntDir)$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_LuaJit_one|Win32'">
@@ -267,7 +265,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;$(SolutionDir)3rd party\luajit-2\src\;$(SolutionDir)3rd party\luabind\;$(DXSDK_DIR)Include;$(XRAY_16X_LIBS)OpenAutomate\inc;$(XRAY_16X_LIBS)libogg-1.1.4\include;$(XRAY_16X_LIBS)libtheora-1.1.1\include;$(xrSdkDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;$(xrLuaDir);$(SolutionDir)3rd party\luabind\;$(xrDXSdkIncDir);$(xrSdkIncDir);$(xrSdkIncDir)OpenAutomate\;$(SolutionDir)..\libraries\libogg\include\;$(SolutionDir)..\libraries\libtheora\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;ENGINE_BUILD;_SECURE_SCL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -294,8 +292,9 @@
     <Link>
       <AdditionalDependencies>vfw32.lib;libogg_static.lib;libtheora_static.lib;oalib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;$(SolutionDir)3rd party\luajit-2\src\;$(XRAY_16X_LIBS)OpenAutomate\libraries;$(XRAY_16X_LIBS)libogg-1.1.4\win32\lib\$(Platform)\Release;$(XRAY_16X_LIBS)libtheora-1.1.1\win32\lib\$(Platform)\Release;$(xrSdkDir)libraries;$(xrLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(xrDXSdkLibDir);$(xrSdkLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>NotSet</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -304,7 +303,6 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <FixedBaseAddress>false</FixedBaseAddress>
-      <ImportLibrary>$(xrLibDir)$(TargetName).lib</ImportLibrary>
       <AdditionalOptions>/ignore:4099</AdditionalOptions>
     </Link>
     <Manifest>

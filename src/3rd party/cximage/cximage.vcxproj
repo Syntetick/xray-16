@@ -68,10 +68,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(xrLibDir)</OutDir>
-    <IntDir>$(xrIntDir)$(ProjectName)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.lib</TargetExt>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_LuaJit_one|Win32'">
     <OutDir>$(xrLibDir)</OutDir>
@@ -93,7 +90,6 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
-      <AdditionalIncludeDirectories>$(XRAY_16X_LIBS);$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;JAS_WIN_MSVC_BUILD;CXIMAGE_BUILD;CXIMAGE_AS_SHARED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -106,7 +102,8 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DisableSpecificWarnings>4995;4100;4702;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4005;4995;4100;4702;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>.;$(SolutionDir);$(SolutionDir)..\libraries\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -114,8 +111,6 @@
     </ResourceCompile>
     <Lib>
       <AdditionalOptions>/ignore:4075 %(AdditionalOptions)</AdditionalOptions>
-      <OutputFile>$(OutDir)$(ProjectName).lib</OutputFile>
-      <AdditionalLibraryDirectories>$(XRAY_16X_LIBS)\jpeg\libraries\Release;$(xrLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Lib>
@@ -233,6 +228,9 @@
     <ClInclude Include="xmemfile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\jpeg\libjpeg.vcxproj">
+      <Project>{938c5808-85a1-4b5a-8cb4-d2d9d7851cb8}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\xrCore\xrCore.vcxproj">
       <Project>{a0f7d1fb-59a7-4717-a7e4-96f37e91998e}</Project>
     </ProjectReference>

@@ -1,0 +1,1 @@
+These are only libs required to build renderers with VS2013+, for older versions install full DXSDK from Miscrosoft and update project includes and libs. If you are using full DXSDK, make sure you use dxguid.lib from WindowsKits SDK otherwise R4 will crash with "Your video card doesn't meet game requirements"

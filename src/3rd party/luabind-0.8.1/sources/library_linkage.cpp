@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////////////
+//	Module 		: library_linkage.cpp
+//	Created 	: 14.04.2007
+//  Modified 	: 14.04.2007
+//	Author		: Dmitriy Iassenev
+//	Description : library linkage file
+////////////////////////////////////////////////////////////////////////////
+
+#include "pch.h"
+//#include <cs/lua/library_linkage.h>
+// #pragma comment(lib, "lua51.lib")
